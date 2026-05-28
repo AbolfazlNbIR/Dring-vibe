@@ -21,8 +21,11 @@ chmod +x dringvibe.py
 
 sudo bash -c "cat > /usr/local/bin/dring-vibe" << EOF
 #!/bin/bash
+
 cd $PROJECT_DIR
-$PROJECT_DIR/venv/bin/python $PROJECT_DIR/dringvibe.py "$@"
+
+exec $PROJECT_DIR/venv/bin/python 
+$PROJECT_DIR/dringvibe.py "$@"
 EOF
 
 sudo chmod +x /usr/local/bin/dring-vibe
@@ -36,7 +39,7 @@ echo "=================================="
 echo ""
 echo "Run with:"
 echo ""
-echo "   dring-vibe 1"
+echo "   dring-vibe"
 echo ""
 echo "Programmer : Abolfazl Nb"
 echo ""
