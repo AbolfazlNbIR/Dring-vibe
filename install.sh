@@ -27,14 +27,11 @@ pip install --break-system-packages -r "$PROJECT_DIR/requirements.txt" > /dev/nu
 
 chmod +x "$PROJECT_DIR/dringvibe.py"
 
-sudo tee /usr/local/bin/dring-vibe > /dev/null << EOF
-#!/bin/bash
+sudo rm -f /usr/local/bin/dring-vibe
 
-cd "$PROJECT_DIR"
-
-exec "$PROJECT_DIR/venv/bin/python3" 
-"$PROJECT_DIR/dringvibe.py" "$@"
-EOF
+echo '#!/bin/bash' | sudo tee /usr/local/bin/dring-vibe > /dev/null
+echo "cd "$PROJECT_DIR"" | sudo tee -a /usr/local/bin/dring-vibe > /dev/null
+echo "exec "$PROJECT_DIR/venv/bin/python3" "$PROJECT_DIR/dringvibe.py" "$@"" | sudo tee -a /usr/local/bin/dring-vibe > /dev/null
 
 sudo chmod +x /usr/local/bin/dring-vibe
 
